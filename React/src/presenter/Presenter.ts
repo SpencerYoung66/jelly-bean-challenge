@@ -13,7 +13,7 @@ export class Presenter {
     }
 
     public removeFlavor(id: number){
-        this._service.removeFlavor(id);
+        return this._service.removeFlavor(id);
     }
 
     public updateFlavor(updatedFlavor: Flavor){

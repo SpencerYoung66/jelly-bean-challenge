@@ -11,10 +11,9 @@ const ListFlavors = (props:Props) => {
     const [editId, setEditId] = useState(-1);
     var oldValue: string = "";
 
-    const handleRemove = (id: number) => {
-        props.presenter.removeFlavor(id); 
+    const handleRemove = async (id: number) => {
+        await props.presenter.removeFlavor(id); 
         props.flavorChange();
-        console.log(FakeData.instance.allFlavors.length); 
     }
 
     const handleUpdate = (currentFlavor: Flavor) => {

@@ -1,6 +1,6 @@
 import { Flavor } from "../model/Flavor";
 import { FakeData } from "./FakeData";
-import { getRequest, postRequest } from "./Requests";
+import { deleteRequest, getRequest, postRequest } from "./Requests";
 
 export class Service {
 
@@ -18,8 +18,10 @@ export class Service {
         return flavors;
     }
 
-    public removeFlavor(id: number){
-        FakeData.instance.allFlavors = FakeData.instance.allFlavors.filter(flavor => flavor.id !== id);
+    public async removeFlavor(id: number){
+        const status = await deleteRequest("flavor/" + id + "/");
+        return status;
+        // FakeData.instance.allFlavors = FakeData.instance.allFlavors.filter(flavor => flavor.id !== id);
     }
 
     public updateFlavor(updatedFlavor: Flavor){

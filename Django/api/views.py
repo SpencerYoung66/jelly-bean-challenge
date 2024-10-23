@@ -52,7 +52,7 @@ def flavor_single(request, id):
     elif request.method == 'DELETE':
         # result = flavor.delete()
         flavor.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"status": f"{status.HTTP_204_NO_CONTENT}"})
 
 # @api_view(['POST'])
 # def add(request):
