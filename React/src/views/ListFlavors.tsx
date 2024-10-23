@@ -13,7 +13,7 @@ const ListFlavors = (props:Props) => {
 
     const handleRemove = (id: number) => {
         props.presenter.removeFlavor(id); 
-        return props.flavorChange();
+        props.flavorChange();
         console.log(FakeData.instance.allFlavors.length); 
     }
 

@@ -4,8 +4,8 @@ import { Service } from "../net/Service";
 export class Presenter {
     private _service: Service = new Service();
 
-    public addFlavor(newFlavor: Flavor){
-        this._service.addFlavor(newFlavor);
+    public addFlavor(name: string){
+        return this._service.addFlavor(name);
     }
 
     public loadFlavors() {

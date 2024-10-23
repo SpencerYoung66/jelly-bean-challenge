@@ -5,9 +5,9 @@ import { Props } from "./Props";
 const AddFlavor = (props:Props) => {
     const [name, setName] = useState("");
 
-    const handleClick = () => {
-        props.presenter.addFlavor(new Flavor(name, (props.flavors)[props.flavors.length-1].id + 1)); 
-        return props.flavorChange();
+    const handleClick = async () => {
+        await props.presenter.addFlavor(name); 
+        props.flavorChange();
     }
 
     return(

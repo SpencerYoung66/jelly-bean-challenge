@@ -12,8 +12,10 @@ function App() {
 
   const [flavors, setFlavors] = useState<Flavor[]>([]);
 
-  const handleFlavorChange = () => {
-    presenter.loadFlavors().then((data) => setFlavors(data));
+  const handleFlavorChange = async () => {
+    var flavorList = await presenter.loadFlavors();
+    setFlavors(flavorList);
+    console.log(flavorList);
   }
   
   useEffect(() => {
