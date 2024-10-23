@@ -4,9 +4,6 @@ export class FakeData {
 
     private static _instance: FakeData;
 
-    /**
-     * Returns the singleton instance.
-     */
     public static get instance(): FakeData {
       if (FakeData._instance == null) {
         FakeData._instance = new FakeData();

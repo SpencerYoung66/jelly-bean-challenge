@@ -5,15 +5,9 @@ import { Props } from "./Props";
 const AddFlavor = (props:Props) => {
     const [name, setName] = useState("");
 
-    // useEffect(() => {
-    //     props.flavorState[1](props.presenter.loadFlavors());
-    //     console.log("in the Use Effect");
-    //   }, [props.flavorState[0]])
-
     const handleClick = () => {
         props.presenter.addFlavor(new Flavor(name, (props.flavors)[props.flavors.length-1].id + 1)); 
         return props.flavorChange();
-        // props.flavorState[1](FakeData.instance.allFlavors);
     }
 
     return(

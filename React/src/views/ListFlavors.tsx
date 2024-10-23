@@ -10,18 +10,10 @@ const ListFlavors = (props:Props) => {
     const [editField, setEditField] = useState("");
     const [editId, setEditId] = useState(-1);
     var oldValue: string = "";
-    // const presenter = new ViewUpdateDeletePresenter();
-    // const [flavors, setFlavors] = useState<Flavor[]>(presenter.loadFlavors());
-
-    // useEffect(() => {
-    //     props.flavorState[1](props.presenter.loadFlavors());
-    //     console.log("in the Use Effect");
-    //   }, [])
 
     const handleRemove = (id: number) => {
         props.presenter.removeFlavor(id); 
         return props.flavorChange();
-        // props.flavorState[1](FakeData.instance.allFlavors);
         console.log(FakeData.instance.allFlavors.length); 
     }
 
@@ -72,15 +64,6 @@ const ListFlavors = (props:Props) => {
         ))}
         </ul>
         </>
-        // <>
-        // <ul>
-        // {flavors.map((flavor) => (
-        //   <li key={flavor.id}>{flavor.title}
-        //   <button onClick={() => {setFlavors(flavors.slice(0, 5))}}>Remove</button>
-        //   </li>
-        // ))}
-        // </ul>
-        // </>
     )
 }
 
