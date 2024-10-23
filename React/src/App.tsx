@@ -9,15 +9,20 @@ import ListFlavors from './views/ListFlavors';
 
 function App() {
   const presenter = new Presenter();
-  const [flavors, setFlavors] = useState<Flavor[]>(presenter.loadFlavors());
+
+  const [flavors, setFlavors] = useState<Flavor[]>([]);
 
   const handleFlavorChange = () => {
-    setFlavors(presenter.loadFlavors());
+    presenter.loadFlavors().then((data) => setFlavors(data));
   }
   
   useEffect(() => {
-    setFlavors(presenter.loadFlavors());
-  }, [flavors])
+    const loadFlavors = async () => {
+      return await presenter.loadFlavors();
+    }
+    var flavorList = loadFlavors();
+    flavorList.then((data) => setFlavors(data));
+  }, [])
 
   return (
     <>

@@ -1,5 +1,6 @@
 import { Flavor } from "../model/Flavor";
 import { FakeData } from "./FakeData";
+import { getRequest } from "./Requests";
 
 export class Service {
 
@@ -7,8 +8,10 @@ export class Service {
         FakeData.instance.allFlavors = [...FakeData.instance.allFlavors, newFlavor];
     }
 
-    public loadFlavors(){
-        return FakeData.instance.allFlavors;
+    public async loadFlavors(){
+        const flavorJson = await getRequest("flavor/");
+        const flavors: Flavor[] = flavorJson as unknown as Flavor[];
+        return flavors;
     }
 
     public removeFlavor(id: number){
