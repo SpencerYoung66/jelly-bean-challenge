@@ -90,7 +90,7 @@ export async function deleteRequest(endpoint: string): Promise<JSON>{
 export async function putRequest(endpoint: string, data: object): Promise<JSON>{
     const url = SERVER_URL + endpoint;
     const req = {
-      method: "post",
+      method: "put",
       headers: new Headers({
         "Content-type": "application/json; charset=UTF-8",
       }),
@@ -111,7 +111,7 @@ export async function putRequest(endpoint: string, data: object): Promise<JSON>{
   
       } catch (err) {
         throw new Error(
-          "Post Request Failed: \n" + (err as Error).message
+          "Put Request Failed: \n" + (err as Error).message
         );
       }
 }

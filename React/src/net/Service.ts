@@ -1,6 +1,6 @@
 import { Flavor } from "../model/Flavor";
 import { FakeData } from "./FakeData";
-import { deleteRequest, getRequest, postRequest } from "./Requests";
+import { deleteRequest, getRequest, postRequest, putRequest } from "./Requests";
 
 export class Service {
 
@@ -24,14 +24,17 @@ export class Service {
         // FakeData.instance.allFlavors = FakeData.instance.allFlavors.filter(flavor => flavor.id !== id);
     }
 
-    public updateFlavor(updatedFlavor: Flavor){
-        FakeData.instance.allFlavors = FakeData.instance.allFlavors.map(flavor => {
-            if(flavor.id == updatedFlavor.id){
-                return updatedFlavor;
-            }
-            else{
-                return flavor;
-            }
-        })
+    public async updateFlavor(updatedFlavor: Flavor){
+        const nameObject = {"name": updatedFlavor.name};
+        await putRequest("flavor/" + updatedFlavor.id + "/", nameObject);
+
+        // FakeData.instance.allFlavors = FakeData.instance.allFlavors.map(flavor => {
+        //     if(flavor.id == updatedFlavor.id){
+        //         return updatedFlavor;
+        //     }
+        //     else{
+        //         return flavor;
+        //     }
+        // })
     }
 }

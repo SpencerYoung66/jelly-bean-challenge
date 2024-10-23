@@ -19,12 +19,10 @@ const ListFlavors = (props:Props) => {
     const handleUpdate = (currentFlavor: Flavor) => {
         if(buttonText == "Edit"){
             setEditId(currentFlavor.id);
-            if(editId == currentFlavor.id){
-                setButtonText("Update");
-                setDisabled(false);
-                setHidden(false);
-                oldValue = currentFlavor.name;
-            }
+            setButtonText("Update");
+            setDisabled(false);
+            setHidden(false);
+            oldValue = currentFlavor.name;
         }
         else if(buttonText == "Update" && editId == currentFlavor.id){
             props.presenter.updateFlavor(new Flavor(editField, currentFlavor.id));
