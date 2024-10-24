@@ -17,6 +17,6 @@ export class Presenter {
     }
 
     public updateFlavor(updatedFlavor: Flavor){
-        this._service.updateFlavor(updatedFlavor);
+        return this._service.updateFlavor(updatedFlavor);
     }
 }

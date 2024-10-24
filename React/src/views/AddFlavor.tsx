@@ -8,6 +8,7 @@ const AddFlavor = (props:Props) => {
     const handleClick = async () => {
         await props.presenter.addFlavor(name); 
         props.flavorChange();
+        setName("");
     }
 
     return(
@@ -15,6 +16,7 @@ const AddFlavor = (props:Props) => {
         <div>
             <label htmlFor="Name">Flavor: </label>
             <input
+                value={name}
                 type="text"
                 id="Name"
                 onChange={(event) => setName(event.target.value)}

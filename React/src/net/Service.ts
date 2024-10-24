@@ -26,7 +26,8 @@ export class Service {
 
     public async updateFlavor(updatedFlavor: Flavor){
         const nameObject = {"name": updatedFlavor.name};
-        await putRequest("flavor/" + updatedFlavor.id + "/", nameObject);
+        const responseFlavor = await putRequest("flavor/" + updatedFlavor.id + "/", nameObject);
+        return responseFlavor
 
         // FakeData.instance.allFlavors = FakeData.instance.allFlavors.map(flavor => {
         //     if(flavor.id == updatedFlavor.id){

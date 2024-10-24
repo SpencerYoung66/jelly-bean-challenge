@@ -16,8 +16,9 @@ const ListFlavors = (props:Props) => {
         props.flavorChange();
     }
 
-    const handleUpdate = (currentFlavor: Flavor) => {
+    const handleUpdate = async (currentFlavor: Flavor) => {
         if(buttonText == "Edit"){
+            setEditField(currentFlavor.name);
             setEditId(currentFlavor.id);
             setButtonText("Update");
             setDisabled(false);
@@ -25,7 +26,8 @@ const ListFlavors = (props:Props) => {
             oldValue = currentFlavor.name;
         }
         else if(buttonText == "Update" && editId == currentFlavor.id){
-            props.presenter.updateFlavor(new Flavor(editField, currentFlavor.id));
+            await props.presenter.updateFlavor(new Flavor(editField, currentFlavor.id));
+            props.flavorChange();
             setEditId(-1);
             setButtonText("Edit");
             setDisabled(true);
@@ -53,9 +55,9 @@ const ListFlavors = (props:Props) => {
         <ul>
         {props.flavors.map((flavor) => (
           <li key={flavor.id}>
-          <input defaultValue={flavor.name} disabled={shouldDisable(flavor.id)} onChange={(event) => {setEditField(event.target.value)}}></input>
+          <input value={shouldDisable(flavor.id) ? flavor.name : editField} defaultValue={flavor.name} disabled={shouldDisable(flavor.id)} onChange={(event) => {setEditField(event.target.value)}}></input>
           <button onClick={(event) => {handleRemove(flavor.id)}}>Remove</button>
-          <button onClick={(event) => {handleUpdate(flavor)}}>{buttonText}</button>
+          <button onClick={(event) => {handleUpdate(flavor)}}>{shouldDisable(flavor.id) ? "Edit" : "Update"}</button>
           <button style={{ display: shouldDisable(flavor.id) ? "none" : "inline" }} disabled={shouldDisable(flavor.id)} onClick={(event) => {handleCancel()}}>Cancel</button>
           </li>
         ))}
