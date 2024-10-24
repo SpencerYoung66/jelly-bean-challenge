@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Props } from "./Props";
 import { Flavor } from "../model/Flavor";
-import { FakeData } from "../net/FakeData";
 
 const ListFlavors = (props:Props) => {
     const [buttonText, setButtonText] = useState("Edit");

@@ -2,6 +2,8 @@ import { Flavor } from "../model/Flavor";
 
 const SERVER_URL: string = 'http://127.0.0.1:8000/api/'
 
+// Request Code adapted from CS 340 Starter Code
+
 export async function getRequest(endpoint: string): Promise<JSON>{
     const url = SERVER_URL + endpoint;
     const req = {
@@ -10,23 +12,9 @@ export async function getRequest(endpoint: string): Promise<JSON>{
         "Content-type": "application/json; charset=UTF-8",
       }),
     };
+
+    return responseHandling(url, req, "Get");
   
-    try {
-        const resp = await fetch(url, req);
-        if (resp.ok) {
-          const response: JSON = await resp.json();
-          console.log(response);
-          return response;
-        } else {
-          const error = await resp.json();
-          throw new Error(error.errorMessage);
-        }
-  
-      } catch (err) {
-        throw new Error(
-          "Get Request Failed: \n" + (err as Error).message
-        );
-      }
 }
 
 export async function postRequest(endpoint: string, data: object): Promise<JSON>{
@@ -39,23 +27,7 @@ export async function postRequest(endpoint: string, data: object): Promise<JSON>
       body: JSON.stringify(data)
     };
   
-
-    try {
-        const resp = await fetch(url, req);
-        if (resp.ok) {
-          const response: JSON = await resp.json();
-          console.log(response);
-          return response;
-        } else {
-          const error = await resp.json();
-          throw new Error(error.errorMessage);
-        }
-  
-      } catch (err) {
-        throw new Error(
-          "Post Request Failed: \n" + (err as Error).message
-        );
-      }
+    return responseHandling(url, req, "Post");
 }
 
 export async function deleteRequest(endpoint: string): Promise<JSON>{
@@ -67,24 +39,8 @@ export async function deleteRequest(endpoint: string): Promise<JSON>{
       }),
     };
   
-    console.log(url);
-    console.log(req);
-    try {
-        const resp = await fetch(url, req);
-        if (resp.ok) {
-          const response: JSON = await resp.json();
-          console.log(response);
-          return response;
-        } else {
-          const error = await resp.json();
-          throw new Error(error.errorMessage);
-        }
-  
-      } catch (err) {
-        throw new Error(
-          "Delete Request Failed: \n" + (err as Error).message
-        );
-      }
+    return responseHandling(url, req, "Delete");
+
 }
 
 export async function putRequest(endpoint: string, data: object): Promise<JSON>{
@@ -97,12 +53,14 @@ export async function putRequest(endpoint: string, data: object): Promise<JSON>{
       body: JSON.stringify(data)
     };
   
+    return responseHandling(url, req, "Put");
+}
 
+async function responseHandling(url: string, req: object, method: string){
     try {
         const resp = await fetch(url, req);
         if (resp.ok) {
           const response: JSON = await resp.json();
-          console.log(response);
           return response;
         } else {
           const error = await resp.json();
@@ -111,9 +69,7 @@ export async function putRequest(endpoint: string, data: object): Promise<JSON>{
   
       } catch (err) {
         throw new Error(
-          "Put Request Failed: \n" + (err as Error).message
+          `${method} Request Failed: \n` + (err as Error).message
         );
       }
 }
-
-// export default getRequest
